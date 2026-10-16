@@ -336,6 +336,10 @@ window.openPhotoViewer = function(idx) {
   if (caption) {
     caption.textContent = item.title;
   }
+  const counter = document.getElementById('lightbox-counter');
+  if (counter) {
+    counter.textContent = `${idx + 1} / ${SOFA_PHOTOS.length}`;
+  }
 
   if (modal) {
     modal.classList.add('open');
@@ -373,4 +377,35 @@ document.addEventListener('keydown', e => {
   if (e.key === 'ArrowRight') nextPhoto();
   if (e.key === 'ArrowLeft') prevPhoto();
 });
+
+// Mobile touch swipe gestures for pure photo viewer
+let touchStartX = 0;
+let touchStartY = 0;
+let touchEndX = 0;
+let touchEndY = 0;
+
+const lightboxEl = document.getElementById('photo-lightbox');
+if (lightboxEl) {
+  lightboxEl.addEventListener('touchstart', e => {
+    touchStartX = e.changedTouches[0].screenX;
+    touchStartY = e.changedTouches[0].screenY;
+  }, { passive: true });
+
+  lightboxEl.addEventListener('touchend', e => {
+    touchEndX = e.changedTouches[0].screenX;
+    touchEndY = e.changedTouches[0].screenY;
+    const dx = touchEndX - touchStartX;
+    const dy = touchEndY - touchStartY;
+    const absDx = Math.abs(dx);
+    const absDy = Math.abs(dy);
+
+    if (absDx > 40 && absDx > absDy) {
+      if (dx < 0) nextPhoto();
+      else prevPhoto();
+    } else if (dy > 80 && absDy > absDx) {
+      closePhotoViewer();
+    }
+  }, { passive: true });
+}
+
 

@@ -326,31 +326,236 @@ main{position:relative;z-index:10;padding-bottom:30vh}
 .lightbox-arrow.prev{left:24px}
 .lightbox-arrow.next{right:24px}
 
-/* When photo viewer is open, completely hide top header, bottom lorry, and float chat to avoid any overlap */
+/* Lightbox meta & mobile navigation */
+.lightbox-meta{display:flex;flex-direction:column;align-items:center;gap:6px;margin-top:14px;transform:none !important}
+.lightbox-counter{font:700 .82rem 'DM Sans',sans-serif;letter-spacing:.15em;color:#f0b23e;background:rgba(0,0,0,.6);padding:4px 14px;border-radius:20px;border:1px solid rgba(240,178,62,.4);transform:none !important}
+.lightbox-mob-nav{display:none}
+
+/* When photo viewer is open, completely hide top header, bottom lorry, and float/mobile docks to avoid any overlap */
 body.modal-open .top,
 body.modal-open .scene,
-body.modal-open .fwa{
+body.modal-open .fwa,
+body.modal-open .mobile-action-dock{
   opacity:0 !important;
   pointer-events:none !important;
   visibility:hidden !important;
   transition:opacity .25s ease-out, visibility .25s ease-out;
 }
 
-/* ---- MOBILE (phones) ---- */
-@media(max-width:850px){
-  .top-nav{display:none}
-  .amz-layout{grid-template-columns:1fr;gap:24px}
-  .amz-gallery{position:static;flex-direction:column-reverse}
-  .amz-thumbs{flex-direction:row}
-  .amz-main-wrap img{height:300px}
+/* ---- MOBILE STICKY QUICK-ACTION DOCK ---- */
+.mobile-action-dock{display:none}
+
+/* ---- RESPONSIVE MEDIA QUERIES (TABLETS & PHONES) ---- */
+@media(max-width:880px){
+  .top{
+    padding:10px 14px;
+    display:flex;
+    flex-wrap:wrap;
+    align-items:center;
+    justify-content:space-between;
+    gap:8px;
+    background:rgba(251,243,226,.96);
+    backdrop-filter:blur(12px);
+    box-shadow:0 4px 18px rgba(0,0,0,.08);
+  }
+  .logo{font-size:1.35rem}
+  .logo small{display:inline-block;font-size:.65rem;margin-left:6px}
+  .hud{display:none}
+  .callpill{padding:8px 14px;font-size:.8rem}
+
+  /* Mobile scrollable navigation chip bar */
+  .top-nav{
+    display:flex !important;
+    width:100%;
+    order:3;
+    overflow-x:auto;
+    -webkit-overflow-scrolling:touch;
+    scrollbar-width:none;
+    gap:6px;
+    padding:4px 2px 2px;
+    white-space:nowrap;
+  }
+  .top-nav::-webkit-scrollbar{display:none}
+  .nav-tab{
+    flex-shrink:0;
+    font-size:.72rem;
+    padding:6px 12px;
+    border-radius:20px;
+    border-width:1.5px;
+  }
 }
-@media(max-width:600px){
-  :root{--sceneH:16vh}
-  .top{padding:12px 4vw}
-  .logo{font-size:1.25rem}
-  .callpill{padding:8px 13px;font-size:.78rem;box-shadow:2px 2px 0 var(--dk)}
-  .lorry{left:8vw;width:clamp(180px,54vw,280px);bottom:2vh}
-  .layer{bottom:3vh}.road{height:4vh}
-  .fwa{width:48px;height:48px;font-size:1.3rem;right:12px;bottom:calc(var(--sceneH) + 8px)}
-  .amz-perks-row{grid-template-columns:repeat(2,1fr);gap:14px}
+
+@media(max-width:768px){
+  /* Gallery mobile optimizations */
+  .gallery-sec{padding-top:2vh}
+  .gallery-tabs{
+    display:flex;
+    gap:8px;
+    justify-content:flex-start;
+    overflow-x:auto;
+    -webkit-overflow-scrolling:touch;
+    scrollbar-width:none;
+    padding:6px 4vw 14px;
+    margin:18px -6vw 26px;
+  }
+  .gallery-tabs::-webkit-scrollbar{display:none}
+  .g-tab{
+    flex-shrink:0;
+    padding:9px 15px;
+    font-size:.74rem;
+    box-shadow:2px 2px 0 var(--dk);
+  }
+  .g-tab:hover,.g-tab:active{transform:scale(.97)}
+  .gallery-grid{
+    grid-template-columns:1fr;
+    gap:26px;
+  }
+  .g-card{
+    padding:10px 10px 14px;
+    border-radius:12px;
+    box-shadow:0 10px 24px rgba(0,0,0,.18);
+  }
+  .g-card img{
+    height:250px;
+    border-radius:8px;
+  }
+  .g-caption h3{font-size:1.05rem}
+
+  /* Mobile Lightbox */
+  .lightbox-modal{padding:12px}
+  .lightbox-content{max-width:96vw;max-height:86vh}
+  .lightbox-content img{
+    max-width:94vw;
+    max-height:60vh;
+    border-radius:8px;
+  }
+  .lightbox-caption{font-size:.95rem;line-height:1.3;margin-top:8px;padding:0 8px}
+  .lightbox-mob-nav{
+    display:flex;
+    gap:10px;
+    margin-top:10px;
+    transform:none !important;
+  }
+  .mob-nav-btn{
+    background:rgba(255,255,255,.18);
+    color:#fff;
+    border:1px solid rgba(255,255,255,.3);
+    padding:8px 16px;
+    border-radius:24px;
+    font:700 .82rem 'DM Sans';
+    cursor:pointer;
+    backdrop-filter:blur(8px);
+    transition:all .15s;
+  }
+  .mob-nav-btn:active{background:rgba(255,255,255,.4);transform:scale(.96)}
+  .lightbox-arrow{
+    width:42px;
+    height:42px;
+    font-size:1.6rem;
+    background:rgba(0,0,0,.5);
+    border-color:rgba(255,255,255,.25);
+  }
+  .lightbox-arrow.prev{left:6px}
+  .lightbox-arrow.next{right:6px}
+  .lightbox-close{
+    top:14px;
+    right:14px;
+    width:44px;
+    height:44px;
+    font-size:1.2rem;
+  }
+
+  /* Mobile Bottom Quick-Action Dock */
+  .mobile-action-dock{
+    display:flex;
+    position:fixed;
+    left:12px;
+    right:12px;
+    bottom:calc(var(--sceneH, 12vh) + 10px);
+    z-index:80;
+    gap:10px;
+    padding:6px;
+    background:rgba(24,27,30,.92);
+    backdrop-filter:blur(16px);
+    -webkit-backdrop-filter:blur(16px);
+    border-radius:36px;
+    border:1px solid rgba(255,255,255,.16);
+    box-shadow:0 12px 32px rgba(0,0,0,.38);
+    animation:dockSlideUp .5s cubic-bezier(.16,1,.3,1) both;
+  }
+  @keyframes dockSlideUp{
+    from{transform:translateY(30px);opacity:0}
+    to{transform:translateY(0);opacity:1}
+  }
+  .mob-action-btn{
+    flex:1;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:7px;
+    padding:11px 12px;
+    border-radius:28px;
+    font:700 .82rem 'DM Sans',sans-serif;
+    text-decoration:none;
+    letter-spacing:.02em;
+    transition:transform .15s ease,opacity .15s ease;
+    box-shadow:0 2px 6px rgba(0,0,0,.25);
+  }
+  .mob-action-btn:active{transform:scale(.96)}
+  .mob-action-btn.mob-wa{
+    background:#25d366;
+    color:#063c19;
+  }
+  .mob-action-btn.mob-call{
+    background:#f0b23e;
+    color:#1f1406;
+  }
+  .mob-action-btn .icon{font-size:1rem;line-height:1}
+
+  /* Hide single desktop WhatsApp pill on phone */
+  .fwa{display:none !important}
 }
+
+@media(max-width:640px){
+  :root{--sceneH:12vh}
+  main{padding-bottom:calc(var(--sceneH) + 90px) !important}
+  .stop{padding:8vh 5vw 4vh}
+  .hero{padding-top:14vh;min-height:86vh}
+  .hero h1{font-size:clamp(2.3rem,9vw,3.6rem);line-height:1.1}
+  .hero-sub{font-size:.95rem;margin:16px 0 22px}
+  .board{grid-template-columns:1fr;gap:28px}
+  .polas{height:360px;width:100%;max-width:300px;margin:0 auto}
+  .pola{width:240px;padding:10px 10px 36px}
+  .pola img{height:200px}
+  .pola figcaption{font-size:1.35rem}
+  .note{padding:24px 18px;box-shadow:5px 5px 0 var(--dk)}
+  .note h2{font-size:1.7rem}
+  .tags{grid-template-columns:1fr 1fr;gap:14px 10px}
+  .tag{min-height:220px;padding:42px 12px 16px}
+  .tag h3{font-size:1.55rem}
+  .tag p{font-size:.78rem;margin-bottom:10px}
+  .perks{grid-template-columns:1fr 1fr;gap:12px}
+  .perk{padding:18px 12px}
+  .perk b{font-size:2rem}
+  .perk h3{font-size:1rem}
+  .formpass{display:flex;flex-direction:column;border-radius:12px}
+  .formpass .pl{padding:18px 14px}
+  .formpass .ps{
+    padding:16px;
+    width:100%;
+    border-top:2px dashed #b99557;
+    border-left:none;
+    display:flex;
+    justify-content:center;
+  }
+  .formpass .ps .bar{display:none}
+  .formpass .ps button{width:100%;padding:14px}
+  .lorry{
+    left:3vw !important;
+    width:clamp(140px,42vw,200px) !important;
+    bottom:1.2vh !important;
+  }
+  .road{height:3.4vh}
+  .layer{bottom:2.2vh}
+}
+

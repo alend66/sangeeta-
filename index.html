@@ -277,11 +277,29 @@
   <button class="lightbox-arrow next" onclick="nextPhoto()" aria-label="Next photo">›</button>
   <div class="lightbox-content">
     <img id="lightbox-img" src="" alt="Handcrafted Sofa Photo">
-    <p id="lightbox-caption" class="lightbox-caption"></p>
+    <div class="lightbox-meta">
+      <p id="lightbox-caption" class="lightbox-caption"></p>
+      <div class="lightbox-counter" id="lightbox-counter">1 / 8</div>
+    </div>
+    <div class="lightbox-mob-nav">
+      <button class="mob-nav-btn" onclick="prevPhoto()" aria-label="Previous">‹ Prev</button>
+      <button class="mob-nav-btn" onclick="closePhotoViewer()" aria-label="Close">✕ Close</button>
+      <button class="mob-nav-btn" onclick="nextPhoto()" aria-label="Next">Next ›</button>
+    </div>
   </div>
 </div>
 
-<!-- FLOATING WHATSAPP BUTTON -->
+<!-- MOBILE STICKY QUICK-ACTION DOCK -->
+<div class="mobile-action-dock" aria-label="Quick Contact Actions">
+  <a class="mob-action-btn mob-wa" href="https://wa.me/918592809092?text=Hello%20SANGEETHA,%20I%20would%20like%20to%20inquire%20about%20your%20handcrafted%20wooden%20furniture!" target="_blank" rel="noopener">
+    <span class="icon">💬</span> WhatsApp Inquiry
+  </a>
+  <a class="mob-action-btn mob-call" href="tel:+918592809092">
+    <span class="icon">📞</span> Call Workshop
+  </a>
+</div>
+
+<!-- FLOATING WHATSAPP BUTTON (Desktop) -->
 <a id="float-wa" class="fwa" href="https://wa.me/918592809092?text=Hello%20SANGEETHA,%20I%20would%20like%20to%20inquire%20about%20your%20handcrafted%20wooden%20furniture!" target="_blank" rel="noopener" aria-label="Chat on WhatsApp">💬</a>
 
 <script src="app.js"></script>
