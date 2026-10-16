@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SANGEETHA | Handcrafted Wooden Furniture & Bespoke Living — Call +91 85928 09092</title>
+<meta name="description" content="SANGEETHA Furniture — Handcrafted solid Kerala teak, spindle joinery, vintage botanical daybeds, and colonial cane living sets. Open 24x7. Call or WhatsApp +91 85928 09092.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,700;0,9..144,900;1,9..144,400;1,9..144,700&family=DM+Sans:wght@400;500;700&family=Caveat:wght@500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- LIVING SKY (Dawn -> Day -> Sunset -> Night) -->
+<div id="sky"></div>
+<div id="stars"></div>
+<div id="sun"></div>
+<div id="moon"></div>
+<div id="clouds"><i></i><i></i><i></i></div>
+<div id="flyers" aria-hidden="true">
+  <div class="bird b1">⌣⌣</div><div class="bird b2">⌣⌣</div><div class="bird b3">⌣⌣</div>
+  <div class="plane">✈<span></span></div>
+  <div class="balloon"><i></i><b></b></div>
+</div>
+<div id="flies" aria-hidden="true"></div>
+<div id="progress"></div>
+
+<!-- TOP BAR + NAVIGATION + ODOMETER HUD -->
+<header class="top">
+  <a href="#home" class="logo">SANGEETHA<small>furniture</small></a>
+  <nav class="top-nav" aria-label="Main Navigation">
+    <a href="#gallery" class="nav-tab highlight">🖼️ Sofa Gallery</a>
+    <a href="#welcome" class="nav-tab">🌿 Atelier</a>
+    <a href="#why" class="nav-tab">⭐ Why SANGEETHA</a>
+    <a href="#reserve" class="nav-tab">📐 Custom Order</a>
+  </nav>
+  <div class="hud" aria-hidden="true">
+    <span class="hud-stop" id="hud-stop">Kerala Atelier</span>
+    <span class="hud-km"><b id="hud-km">0000</b> km</span>
+  </div>
+  <a id="nav-call" class="callpill" href="tel:+918592809092">☎ Call Now</a>
+</header>
+
+<!-- THE ROAD (fixed cinematic scene, vehicle moving with scroll) -->
+<div class="scene" aria-hidden="true">
+  <div class="layer l1" id="l1"><svg viewBox="0 0 1200 200" preserveAspectRatio="none"><path d="M0 200V110C120 50 220 90 340 100S560 30 700 70 960 130 1060 80 1160 70 1200 110V200Z"/></svg><svg viewBox="0 0 1200 200" preserveAspectRatio="none"><path d="M0 200V110C120 50 220 90 340 100S560 30 700 70 960 130 1060 80 1160 70 1200 110V200Z"/></svg></div>
+  <div class="layer l2" id="l2"><svg viewBox="0 0 1200 200" preserveAspectRatio="none"><path d="M0 200V130C140 90 260 150 400 120S640 70 780 110 1040 160 1130 120 1180 120 1200 130V200Z"/></svg><svg viewBox="0 0 1200 200" preserveAspectRatio="none"><path d="M0 200V130C140 90 260 150 400 120S640 70 780 110 1040 160 1130 120 1180 120 1200 130V200Z"/></svg></div>
+  <div class="layer l3" id="l3"><svg viewBox="0 0 1200 200" preserveAspectRatio="none"><path d="M0 200V150C100 120 240 170 380 150S620 120 760 150 1000 180 1100 150 1180 140 1200 150V200Z"/></svg><svg viewBox="0 0 1200 200" preserveAspectRatio="none"><path d="M0 200V150C100 120 240 170 380 150S620 120 760 150 1000 180 1100 150 1180 140 1200 150V200Z"/></svg></div>
+  <div class="road" id="road"></div>
+  <!-- THE REAL PHOTO SANGEETHA FURNITURE DELIVERY LORRY -->
+  <div class="lorry real-lorry" id="lorry">
+    <div class="beam" id="beam"></div>
+    <div class="puffs"><i></i><i></i><i></i></div>
+    <canvas id="lorryimg" role="img" aria-label="Real SANGEETHA Furniture Delivery Lorry"></canvas>
+    <!-- Rotating Wheel Rim Overlays (Rear: 29.8%, Front: 78.2%) -->
+    <div class="rim" id="w1" style="left:29.8%;top:75.8%"><svg viewBox="0 0 100 100"><circle cx="50" cy="50" r="48" fill="#181b1e"/><circle cx="50" cy="50" r="44" fill="#2d3238"/><circle cx="50" cy="50" r="34" fill="#a4aab2"/><circle cx="50" cy="50" r="26" fill="#697078"/><g fill="#181b1e"><circle cx="50" cy="50" r="10"/><circle cx="50" cy="32" r="4"/><circle cx="68" cy="50" r="4"/><circle cx="50" cy="68" r="4"/><circle cx="32" cy="50" r="4"/><circle cx="63" cy="37" r="4"/><circle cx="37" cy="63" r="4"/><circle cx="63" cy="63" r="4"/><circle cx="37" cy="37" r="4"/></g></svg></div>
+    <div class="rim" id="w2" style="left:78.2%;top:75.8%"><svg viewBox="0 0 100 100"><circle cx="50" cy="50" r="48" fill="#181b1e"/><circle cx="50" cy="50" r="44" fill="#2d3238"/><circle cx="50" cy="50" r="34" fill="#a4aab2"/><circle cx="50" cy="50" r="26" fill="#697078"/><g fill="#181b1e"><circle cx="50" cy="50" r="10"/><circle cx="50" cy="32" r="4"/><circle cx="68" cy="50" r="4"/><circle cx="50" cy="68" r="4"/><circle cx="32" cy="50" r="4"/><circle cx="63" cy="37" r="4"/><circle cx="37" cy="63" r="4"/><circle cx="63" cy="63" r="4"/><circle cx="37" cy="37" r="4"/></g></svg></div>
+  </div>
+
+
+</div>
+
+<main>
+
+<!-- 00 DEPARTURE -->
+<section class="stop hero" id="home" data-stop="Kerala Atelier">
+  <p class="hello rv">Solid Teak · Spindle Joinery · Handcrafted Living</p>
+  <h1 class="rv">Made for home,<br><em>built for generations.</em></h1>
+  <p class="hero-sub rv">Solid Kerala Teak · Hand-Turned Spindles · Custom Sizes &nbsp;—&nbsp; Open 24×7</p>
+  <div class="cta rv">
+    <a id="hero-call" class="btn" href="tel:+918592809092">Call Now</a>
+    <a id="hero-reserve" class="btn alt" href="#reserve">Book custom piece</a>
+  </div>
+  <p class="drive">scroll to explore <span>→</span></p>
+</section>
+
+<!-- 01 WELCOME POLAROIDS -->
+<section class="stop board" id="welcome" data-stop="Workshop">
+  <div class="polas">
+    <figure class="pola p1 rv"><img src="assets/images/furniture-spindle-olive.jpg" alt="Kyoto Spindle Sofa by Sangeetha"><figcaption>our craft · the kyoto spindle</figcaption></figure>
+    <figure class="pola p2 rv"><img src="assets/images/furniture-cane-heritage.jpg" alt="Colonial Cane Living Room"><figcaption>your view · timeless warmth</figcaption></figure>
+  </div>
+  <div class="note rv">
+    <span class="sign">Welcome to the Atelier</span>
+    <h2>Every living room should feel like <em>the soul of the home.</em></h2>
+    <p>No synthetic chipboard, no hidden staples. Tell us your room dimensions and preferred timber—we will craft your sofa, daybed, or cane set by hand and deliver it directly to your home. Day or night, one call is all it takes.</p>
+    <p class="hand">— team SANGEETHA</p>
+  </div>
+</section>
+
+<!-- 02 SERVICES / CRAFT SPECIALTIES -->
+<section class="stop services" id="services" data-stop="Craft Specialties">
+  <div class="shead rv"><span class="sign">Our Specialization</span><h2>Pick your <em>kind of craft</em></h2></div>
+  <div class="tags">
+    <div class="tagw t1 rv"><div class="tag"><small>CRAFT Nº 01</small><h3>Spindle</h3><p>Hand-turned baluster spindle sofas and armchairs.</p><span>→ SANGEETHA</span></div></div>
+    <div class="tagw t2 rv"><div class="tag"><small>CRAFT Nº 02</small><h3>Cane</h3><p>Natural woven octagonal rattan cane backs and daybeds.</p><span>→ SANGEETHA</span></div></div>
+    <div class="tagw t3 rv"><div class="tag"><small>CRAFT Nº 03</small><h3>Teak</h3><p>Kiln-dried plantation Kerala teak with 50-year joinery.</p><span>→ SANGEETHA</span></div></div>
+    <div class="tagw t4 rv"><div class="tag"><small>CRAFT Nº 04</small><h3>Custom</h3><p>Made-to-measure dimensions crafted to your floorplan.</p><span>→ SANGEETHA</span></div></div>
+  </div>
+</section>
+
+<!-- 03 SOFA PHOTO GALLERY SECTION (ONLY GALLERY) -->
+<section class="stop gallery-sec" id="gallery" data-stop="Sofa Gallery">
+  <div class="shead rv">
+    <span class="sign">Sofa Photo Gallery · Real Atelier Showcase</span>
+    <h2>Handcrafted <em>sofa photo gallery</em></h2>
+    <p class="section-sub">Authentic photographs of our handcrafted solid Kerala teak suites, circular barrel spindle armchairs, and bespoke atelier builds.</p>
+  </div>
+
+  <!-- GALLERY CATEGORY TABS -->
+  <div class="gallery-tabs rv">
+    <button type="button" class="g-tab active" onclick="filterGallery('all', this)">All Sofas (8)</button>
+    <button type="button" class="g-tab" onclick="filterGallery('spindle', this)">Teak Spindle Sets</button>
+    <button type="button" class="g-tab" onclick="filterGallery('royal', this)">Royal Salon Suites</button>
+    <button type="button" class="g-tab" onclick="filterGallery('modern', this)">Modern Walnut</button>
+  </div>
+
+  <!-- GALLERY GRID -->
+  <!-- GALLERY GRID (PURE SOFA PHOTOS) -->
+  <div class="gallery-grid" id="gallery-grid">
+    <!-- Item 1: Real Barrel Spindle Suite -->
+    <div class="g-item rv" data-cat="spindle" onclick="openPhotoViewer(0)" role="button" tabindex="0">
+      <div class="g-card">
+        <span class="tape"></span>
+        <img src="assets/images/real-sofa-barrel-spindle-suite.jpg" alt="The Travancore Barrel Spindle 3-Piece Suite">
+        <div class="g-caption">
+          <h3>The Travancore Barrel Spindle 3-Piece Suite</h3>
+        </div>
+      </div>
+    </div>
+
+    <!-- Item 2: Real Dark Teak Suite -->
+    <div class="g-item rv" data-cat="royal" onclick="openPhotoViewer(1)" role="button" tabindex="0">
+      <div class="g-card">
+        <span class="tape"></span>
+        <img src="assets/images/real-sofa-dark-teak-suite.jpg" alt="The Malabar Royal Salon 3-Piece Set">
+        <div class="g-caption">
+          <h3>The Malabar Royal Salon 3-Piece Set</h3>
+        </div>
+      </div>
+    </div>
+
+    <!-- Item 3: Showroom Front View -->
+    <div class="g-item rv" data-cat="royal" onclick="openPhotoViewer(2)" role="button" tabindex="0">
+      <div class="g-card">
+        <span class="tape"></span>
+        <img src="assets/images/real-sofa-showroom-front.jpg" alt="Malabar Royal Suite — Showroom View">
+        <div class="g-caption">
+          <h3>Malabar Royal Suite — Showroom View</h3>
+        </div>
+      </div>
+    </div>
+
+    <!-- Item 4: Modern Walnut Side Profile -->
+    <div class="g-item rv" data-cat="modern" onclick="openPhotoViewer(3)" role="button" tabindex="0">
+      <div class="g-card">
+        <span class="tape"></span>
+        <img src="assets/images/real-sofa-modern-walnut-side.jpg" alt="The Zurich Architectural Walnut Sofa">
+        <div class="g-caption">
+          <h3>The Zurich Architectural Walnut Sofa</h3>
+        </div>
+      </div>
+    </div>
+
+    <!-- Item 5: Heritage Living Room Setup -->
+    <div class="g-item rv" data-cat="spindle" onclick="openPhotoViewer(4)" role="button" tabindex="0">
+      <div class="g-card">
+        <span class="tape"></span>
+        <img src="assets/images/hero-furniture-backdrop.jpg" alt="Kerala Heritage Living Atelier">
+        <div class="g-caption">
+          <h3>Kerala Heritage Living Atelier</h3>
+        </div>
+      </div>
+    </div>
+
+    <!-- Item 6: Colonial Cane Heritage Set -->
+    <div class="g-item rv" data-cat="spindle" onclick="openPhotoViewer(5)" role="button" tabindex="0">
+      <div class="g-card">
+        <span class="tape"></span>
+        <img src="assets/images/furniture-cane-heritage.jpg" alt="The Colonial Cane Heritage Set">
+        <div class="g-caption">
+          <h3>The Colonial Cane Heritage Set</h3>
+        </div>
+      </div>
+    </div>
+
+    <!-- Item 7: Botanical Linen Daybed -->
+    <div class="g-item rv" data-cat="spindle" onclick="openPhotoViewer(6)" role="button" tabindex="0">
+      <div class="g-card">
+        <span class="tape"></span>
+        <img src="assets/images/furniture-botanical-daybed.jpg" alt="The Botanica Hand-Turned Daybed">
+        <div class="g-caption">
+          <h3>The Botanica Hand-Turned Daybed</h3>
+        </div>
+      </div>
+    </div>
+
+    <!-- Item 8: Real Heritage Spindle Armchairs & Living Suite -->
+    <div class="g-item rv" data-cat="spindle" onclick="openPhotoViewer(7)" role="button" tabindex="0">
+      <div class="g-card">
+        <span class="tape"></span>
+        <img src="assets/images/real-sofa-heritage-spindle-suite.jpg" alt="The Malabar Heritage Spindle Armchairs &amp; Salon Suite">
+        <div class="g-caption">
+          <h3>The Malabar Heritage Spindle Armchairs &amp; Salon Suite</h3>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 05 WHY SANGEETHA -->
+<section class="stop why" id="why" data-stop="Why SANGEETHA">
+  <div class="shead rv"><span class="sign">Our Promise</span><h2>Why furnish <em>with us</em></h2></div>
+  <div class="perks">
+    <div class="perk rv"><b>24×7</b><h3>Always open</h3><p>Early inquiry or midnight idea, we answer.</p></div>
+    <div class="perk rv"><b>100%</b><h3>Solid Kerala Teak</h3><p>Kiln-dried plantation hardwood that outlives generations.</p></div>
+    <div class="perk rv"><b>0%</b><h3>No chipboard</h3><p>True chiseled mortise and tenon interlocking joinery.</p></div>
+    <div class="perk rv"><b>1 call</b><h3>Direct to carpenter</h3><p>Tell us your room size, we craft it to the millimeter.</p></div>
+  </div>
+</section>
+
+<!-- 04d FAQ PIT STOP -->
+<section class="stop faq" id="faq" data-stop="Good to know">
+  <div class="shead rv"><span class="sign">Stop 06</span><h2>Quick <em>workshop</em> answers</h2></div>
+  <div class="qa">
+    <details class="rv"><summary>How do I book or order a piece?</summary><p>Call or WhatsApp <strong>85928 09092</strong>, or fill in the reservation pass below and we will confirm directly on WhatsApp with photos and timber samples.</p></details>
+    <details class="rv"><summary>Can I customize dimensions and fabric?</summary><p>Yes, 100%! Choose your sofa length, timber (Teak, Walnut, Rosewood), and cushion textiles (Botanical Linen, Sage Velvet, Olive Chenille, or Cane).</p></details>
+    <details class="rv"><summary>Do you deliver across India?</summary><p>Yes, all pieces are cushioned in export-grade shockproof wooden crates and delivered to your doorstep.</p></details>
+    <details class="rv"><summary>How do I talk directly to the workshop?</summary><p>Call our direct line <strong>+91 85928 09092</strong> anytime 24×7.</p></details>
+  </div>
+</section>
+
+<!-- 05 NIGHT STOP / RESERVATION PASS -->
+<section class="stop reserve" id="reserve" data-stop="Night Stop">
+  <div class="shead rv"><span class="sign">Stop 07</span><h2>Save your piece <em>under the stars</em></h2></div>
+  <form id="booking-form" class="pass formpass rv">
+    <div class="pl formgrid">
+      <small>SANGEETHA · FURNITURE RESERVATION</small>
+      <label>Customer Name<input id="b-name" placeholder="Your name" required></label>
+      <label>Delivery City<input id="b-place" placeholder="City / Town" required></label>
+      <label>Date<input id="b-date" type="date" required></label>
+      <label>Furniture Piece
+        <select id="b-piece">
+          <option value="The Kyoto Spindle 3-Seater">The Kyoto Spindle 3-Seater</option>
+          <option value="The Botanica Hand-Turned Daybed">The Botanica Hand-Turned Daybed</option>
+          <option value="The Malabar Colonial Cane Sofa">The Malabar Colonial Cane Sofa</option>
+          <option value="The Zurich Brass-Stiletto Walnut Sofa">The Zurich Brass-Stiletto Walnut Sofa</option>
+          <option value="The Travancore Royal Carved Salon Suite">The Travancore Royal Carved Salon Suite</option>
+          <option value="Custom Made-to-Measure Piece">Custom Made-to-Measure Piece</option>
+        </select>
+      </label>
+    </div>
+    <div class="ps"><small>CONFIRM</small><div class="bar"></div><button id="b-submit" class="btn" type="submit">Send on WhatsApp</button></div>
+  </form>
+</section>
+
+<!-- 06 THE SIGN / FINAL CONTACT -->
+<section class="stop final" id="contact" data-stop="Journey's End">
+  <div class="open-sign rv">OPEN 24×7</div>
+  <a id="contact-call" class="neon rv" href="tel:+918592809092">85928 09092</a>
+  <p class="rv">Handcrafted Solid Teak · Spindle Joinery · Custom Living</p>
+  <div class="cta rv">
+    <a id="contact-wa" class="btn" href="https://wa.me/918592809092?text=Hello%20SANGEETHA,%20I%20want%20to%20order%20custom%20handcrafted%20furniture!" target="_blank" rel="noopener">WhatsApp us</a>
+    <a id="contact-call-btn" class="btn alt" href="tel:+918592809092">Call 85928 09092</a>
+  </div>
+  <small class="copy">© 2026 SANGEETHA FURNITURE — see you at home.</small>
+</section>
+
+</main>
+
+<!-- PURE PHOTO LIGHTBOX (IMAGE ONLY) - At body root so nothing overlaps it -->
+<div id="photo-lightbox" class="lightbox-modal" aria-hidden="true" role="dialog" aria-label="Photo Viewer">
+  <div class="lightbox-backdrop" onclick="closePhotoViewer()"></div>
+  <button class="lightbox-close" onclick="closePhotoViewer()" aria-label="Close photo">✕</button>
+  <button class="lightbox-arrow prev" onclick="prevPhoto()" aria-label="Previous photo">‹</button>
+  <button class="lightbox-arrow next" onclick="nextPhoto()" aria-label="Next photo">›</button>
+  <div class="lightbox-content">
+    <img id="lightbox-img" src="" alt="Handcrafted Sofa Photo">
+    <p id="lightbox-caption" class="lightbox-caption"></p>
+  </div>
+</div>
+
+<!-- FLOATING WHATSAPP BUTTON -->
+<a id="float-wa" class="fwa" href="https://wa.me/918592809092?text=Hello%20SANGEETHA,%20I%20would%20like%20to%20inquire%20about%20your%20handcrafted%20wooden%20furniture!" target="_blank" rel="noopener" aria-label="Chat on WhatsApp">💬</a>
+
+<script src="app.js"></script>
+</body>
+</html>
