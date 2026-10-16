@@ -340,6 +340,10 @@ window.openPhotoViewer = function(idx) {
   if (counter) {
     counter.textContent = `${idx + 1} / ${SOFA_PHOTOS.length}`;
   }
+  const waBtn = document.getElementById('lightbox-wa-btn');
+  if (waBtn) {
+    waBtn.href = `https://wa.me/918592809092?text=${encodeURIComponent('Hello SANGEETHA, I would like to inquire about: ' + item.title)}`;
+  }
 
   if (modal) {
     modal.classList.add('open');
