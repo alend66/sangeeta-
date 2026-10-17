@@ -69,31 +69,36 @@ a{color:inherit}
   100%{transform:translate(-36px,-36px) scale(2.2);opacity:0}
 }
 
-/* Real Headlight Beam - Focused forward and downward towards the road */
+/* Real Headlight Beam - Originates directly from the glowing bulb with soft atmospheric fade */
 .lorry .beam{
   position:absolute;
-  left:92.5%;
-  top:56%;
-  width:clamp(160px,36vw,420px);
-  height:65%;
-  background:linear-gradient(90deg,rgba(255,250,210,.95) 0%,rgba(255,235,140,.6) 22%,rgba(255,215,100,.22) 55%,transparent 100%);
-  clip-path:polygon(0 40%,100% 25%,100% 98%,0 68%);
+  left:93%;
+  top:60.5%;
+  transform-origin:0% 50%;
+  transform:translateY(-50%) rotate(3deg);
+  width:clamp(180px,38vw,440px);
+  height:clamp(60px,14vw,130px);
+  background:radial-gradient(ellipse at 0% 50%, rgba(255,255,240,0.95) 0%, rgba(255,240,150,0.6) 12%, rgba(255,225,110,0.25) 35%, rgba(255,210,80,0.06) 55%, transparent 72%);
+  clip-path:polygon(0% 48%, 100% 5%, 100% 95%, 0% 52%);
+  -webkit-mask-image:linear-gradient(90deg, #000 0%, #000 30%, rgba(0,0,0,0.4) 55%, transparent 75%);
+  mask-image:linear-gradient(90deg, #000 0%, #000 30%, rgba(0,0,0,0.4) 55%, transparent 75%);
+  filter:blur(2.5px);
   opacity:0;
   transition:opacity .4s ease-out;
   pointer-events:none;
   z-index:4;
 }
 
-/* Headlight Lamp Bulb Glow */
+/* Headlight Lamp Bulb Glow - Placed right over the physical truck headlight */
 .lorry .lamp-glow{
   position:absolute;
   left:91.8%;
   top:59.5%;
-  width:3.5%;
+  width:3.8%;
   aspect-ratio:1;
   border-radius:50%;
-  background:radial-gradient(circle,#ffffff 25%,#fff4b8 65%,rgba(255,230,120,0) 100%);
-  box-shadow:0 0 12px 6px rgba(255,240,160,.9),0 0 28px 12px rgba(255,210,90,.5);
+  background:radial-gradient(circle,#ffffff 30%,#fff4b8 65%,rgba(255,230,120,0) 100%);
+  box-shadow:0 0 16px 8px rgba(255,245,170,.95),0 0 36px 16px rgba(255,215,90,.6);
   opacity:0;
   transition:opacity .4s ease-out;
   pointer-events:none;
@@ -103,13 +108,13 @@ a{color:inherit}
 /* Road Surface Illumination Pool */
 .lorry .road-light{
   position:absolute;
-  left:94%;
-  top:84%;
-  width:clamp(120px,30vw,280px);
-  height:26%;
+  left:95%;
+  top:82%;
+  width:clamp(140px,32vw,320px);
+  height:24%;
   border-radius:50%;
-  background:radial-gradient(ellipse at 40% 50%,rgba(255,240,170,.55) 0%,rgba(255,220,120,.22) 45%,transparent 75%);
-  filter:blur(5px);
+  background:radial-gradient(ellipse at 35% 50%,rgba(255,245,170,.6) 0%,rgba(255,225,120,.25) 45%,transparent 75%);
+  filter:blur(6px);
   opacity:0;
   transition:opacity .4s ease-out;
   pointer-events:none;
@@ -221,18 +226,40 @@ main{position:relative;z-index:10;padding-bottom:30vh}
 .qa details p{margin-top:12px;font-size:.95rem}
 
 /* reserve */
-.formpass{max-width:900px;margin:auto;filter:none}
-.reserve .pass{filter:none;box-shadow:none}
-.reserve form.pass{box-shadow:none}
-.formgrid{display:grid;grid-template-columns:1fr 1fr;gap:22px 28px}
+.reserve .formpass{
+  max-width:900px;
+  width:100%;
+  margin:auto;
+  filter:none;
+  -webkit-mask:none !important;
+  mask:none !important;
+  border-radius:18px;
+  border:2px solid var(--dk);
+  box-shadow:6px 6px 0 var(--dk);
+  overflow:hidden;
+  box-sizing:border-box;
+}
+.reserve .pass{filter:none;box-shadow:6px 6px 0 var(--dk)}
+.reserve form.pass{box-shadow:6px 6px 0 var(--dk);-webkit-mask:none !important;mask:none !important}
+.formgrid{display:grid;grid-template-columns:1fr 1fr;gap:22px 28px;width:100%;box-sizing:border-box}
 .formgrid small{grid-column:span 2}
-.formgrid label{display:flex;flex-direction:column;font:700 .6rem 'DM Sans';letter-spacing:.28em;text-transform:uppercase;color:#8b6a3c}
+.formgrid label{display:flex;flex-direction:column;font:700 .6rem 'DM Sans';letter-spacing:.28em;text-transform:uppercase;color:#8b6a3c;width:100%;box-sizing:border-box;min-width:0}
 .formgrid label:nth-of-type(2){grid-column:span 2}
-.formgrid input,.formgrid select{background:transparent;border:0;border-bottom:2px solid var(--dk);padding:10px 0;font:500 1.1rem 'DM Sans';color:var(--dk);outline:none}
+.formgrid input,.formgrid select{
+  width:100%;
+  max-width:100%;
+  min-width:0;
+  box-sizing:border-box;
+  background:transparent;
+  border:0;
+  border-bottom:2px solid var(--dk);
+  padding:10px 0;
+  font:500 1.1rem 'DM Sans';
+  color:var(--dk);
+  outline:none;
+}
 .formgrid input:focus,.formgrid select:focus{border-color:var(--terra)}
 .ps .btn{font-size:.8rem;padding:12px 14px;border-radius:12px;width:100%;box-shadow:3px 3px 0 var(--dk)}
-.formpass{drop-shadow:none}
-.reserve .formpass{filter:drop-shadow(0 18px 30px rgba(0,0,0,.5))}
 
 /* final sign */
 .final{text-align:center;padding-bottom:10vh}
@@ -247,14 +274,6 @@ main{position:relative;z-index:10;padding-bottom:30vh}
 .fwa{position:fixed;right:20px;bottom:calc(var(--sceneH) + 14px);z-index:50;width:58px;height:58px;border-radius:50%;background:#25d366;display:grid;place-items:center;font-size:1.6rem;text-decoration:none;border:2px solid var(--dk);box-shadow:3px 3px 0 var(--dk);transition:.25s}
 .fwa:hover{transform:translate(-2px,-2px) scale(1.06)}
 
-@media(max-width:860px){
-  .hud{display:none}.logo small{display:none}.callpill{padding:9px 16px;font-size:.8rem}
-  .board{grid-template-columns:1fr;gap:40px}.polas{height:440px}
-  .pass{grid-template-columns:1fr 104px;-webkit-mask:none;mask:none}.seatbig b{font-size:2.4rem}.pl{padding:20px}.ps b{font-size:2rem}.ps a{font-size:.6rem;padding:7px 10px}
-  .formgrid{grid-template-columns:1fr}.formgrid small,.formgrid label:nth-of-type(2){grid-column:auto}
-  .stop{padding:11vh 6vw 6vh}.note{padding:30px}
-  :root{--sceneH:19vh}
-}
 @media(prefers-reduced-motion:reduce){.lorry,#clouds i,.open-sign,.neon,#stars i,.drive span,.bird,.plane,.balloon,.puffs i,#flies i,.btn,.fwa{animation:none!important}}
 
 /* ---- EXTRA ANIMATIONS ---- */
@@ -397,274 +416,210 @@ body.modal-open .mobile-action-dock{
 /* ---- MOBILE STICKY QUICK-ACTION DOCK ---- */
 .mobile-action-dock{display:none}
 
-/* ---- RESPONSIVE MEDIA QUERIES (TABLETS & PHONES) ---- */
+/* ---- UNIFIED RESPONSIVE SYSTEM (TABLETS & ALL MOBILE PHONES) ---- */
 @media(max-width:880px){
-  html{scroll-padding-top:105px}
+  html{scroll-padding-top:115px !important}
+
+  /* Fixed Top Bar on Mobile */
   .top{
-    padding:10px 14px 8px;
-    display:flex;
-    flex-wrap:wrap;
-    align-items:center;
-    justify-content:space-between;
-    gap:8px 0;
-    background:rgba(251,243,226,.98);
-    backdrop-filter:blur(14px);
-    -webkit-backdrop-filter:blur(14px);
-    box-shadow:0 3px 14px rgba(0,0,0,.08);
+    padding:10px 14px 8px !important;
+    display:flex !important;
+    flex-wrap:wrap !important;
+    align-items:center !important;
+    justify-content:space-between !important;
+    gap:8px 0 !important;
+    background:rgba(251,243,226,.98) !important;
+    backdrop-filter:blur(14px) !important;
+    -webkit-backdrop-filter:blur(14px) !important;
+    box-shadow:0 3px 14px rgba(0,0,0,.08) !important;
+    z-index:50 !important;
   }
-  .logo{font-size:1.35rem}
-  .logo small{display:inline-block;font-size:.65rem;margin-left:6px}
-  .hud{display:none}
-  .callpill{padding:8px 16px;font-size:.8rem}
+  .logo{
+    font-size:1.35rem !important;
+    color:#2b1d14 !important;
+    display:flex !important;
+    align-items:baseline !important;
+    gap:6px !important;
+  }
+  .logo small{
+    display:inline-block !important;
+    font-size:.65rem !important;
+    color:#7b4a2b !important;
+    margin-left:4px !important;
+  }
+  .hud{display:none !important}
+  .callpill{
+    padding:8px 16px !important;
+    font-size:.82rem !important;
+    background:var(--mustard) !important;
+    color:#2b1d14 !important;
+    border:2px solid #2b1d14 !important;
+  }
 
   /* Mobile scrollable navigation chip bar */
   .top-nav{
     display:flex !important;
-    width:100%;
-    order:3;
-    overflow-x:auto;
-    -webkit-overflow-scrolling:touch;
-    scrollbar-width:none;
-    gap:8px;
-    padding:4px 0 2px;
-    white-space:nowrap;
+    width:100% !important;
+    order:3 !important;
+    overflow-x:auto !important;
+    -webkit-overflow-scrolling:touch !important;
+    scrollbar-width:none !important;
+    gap:8px !important;
+    padding:6px 2px 2px !important;
+    white-space:nowrap !important;
+    box-sizing:border-box !important;
   }
   .top-nav::-webkit-scrollbar{display:none}
   .nav-tab{
-    flex-shrink:0;
-    font-size:.74rem;
-    padding:7px 14px;
-    border-radius:24px;
-    border-width:1.5px;
+    flex-shrink:0 !important;
+    font-size:.74rem !important;
+    padding:7px 14px !important;
+    border-radius:24px !important;
+    border-width:1.5px !important;
   }
 
-  /* Mobile Kerala delivery lorry and road - perfectly fitted at bottom */
-  .scene{
-    display:block !important;
-    position:fixed;
-    left:0;
-    right:0;
-    bottom:0;
-    height:38px;
-    z-index:30;
-    pointer-events:none;
-  }
-  /* Hide the tall brown hills on mobile so they NEVER cover photos or text */
-  .layer{display:none !important}
-  .road{height:26px;bottom:0}
-  .lorry{
-    display:block !important;
-    left:6vw !important;
-    bottom:12px !important;
-    width:clamp(140px,40vw,190px) !important;
-  }
-  main{padding-bottom:70px !important}
-  .fwa{
-    bottom:38px !important;
-    right:14px !important;
-    width:50px;
-    height:50px;
-    font-size:1.4rem;
-  }
-}
-
-@media(max-width:768px){
-  /* Gallery mobile layout */
-  .gallery-sec{padding-top:2vh}
-  .gallery-tabs{
-    display:flex;
-    gap:8px;
-    justify-content:flex-start;
-    overflow-x:auto;
-    -webkit-overflow-scrolling:touch;
-    scrollbar-width:none;
-    padding:4px 0 16px;
-    margin:14px 0 24px;
-    width:100%;
-    box-sizing:border-box;
-  }
-  .gallery-tabs::-webkit-scrollbar{display:none}
-  .g-tab{
-    flex-shrink:0;
-    padding:9px 16px;
-    font-size:.75rem;
-    box-shadow:2px 2px 0 var(--dk);
-  }
-  .g-tab:hover,.g-tab:active{transform:scale(.97)}
-  .gallery-grid{
-    grid-template-columns:1fr;
-    gap:26px;
-  }
-  .g-card{
-    padding:10px 10px 14px;
-    border-radius:14px;
-    box-shadow:0 10px 24px rgba(0,0,0,.18);
-  }
-  .g-img-wrap{
-    height:250px;
-    border-radius:10px;
-  }
-  .g-caption h3{font-size:1.05rem;margin:0 0 8px}
-  .g-card-actions{
-    display:flex;
-    gap:8px;
-    margin-top:6px;
-  }
-  .g-action-btn{
-    flex:1;
-    text-align:center;
-    padding:9px 12px;
-    font-size:.76rem;
+  /* Main container clearance on mobile */
+  main{
+    position:relative !important;
+    padding-bottom:90px !important;
   }
 
-  /* Mobile Lightbox - Clean, Unobstructed, Centered */
-  .lightbox-modal{padding:12px;align-items:center;justify-content:center}
-  .lightbox-content{max-width:96vw;max-height:88vh;align-items:center;text-align:center}
-  .lightbox-content img{
-    max-width:92vw;
-    max-height:55vh;
-    width:auto;
-    height:auto;
-    object-fit:contain;
-    border-radius:12px;
-    margin:0 auto;
-    display:block;
-    box-shadow:0 16px 40px rgba(0,0,0,.85);
+  /* Global Section Centering on Mobile */
+  .stop{
+    padding:50px 16px 36px !important;
+    width:100% !important;
+    max-width:100% !important;
+    box-sizing:border-box !important;
+    margin:0 auto !important;
+    display:flex !important;
+    flex-direction:column !important;
+    align-items:center !important;
+    text-align:center !important;
   }
-  .lightbox-caption{font-size:1.05rem;line-height:1.35;margin-top:10px;padding:0 8px;text-align:center}
-  .lightbox-mob-nav{
-    display:flex;
-    gap:8px;
-    margin-top:12px;
-    transform:none !important;
-    width:100%;
-    max-width:340px;
-    justify-content:center;
+  .shead{
+    margin-bottom:28px !important;
+    width:100% !important;
+    max-width:520px !important;
+    margin-left:auto !important;
+    margin-right:auto !important;
+    text-align:center !important;
   }
-  .mob-nav-btn{
-    flex:1;
-    background:rgba(255,255,255,.18);
-    color:#fff;
-    border:1px solid rgba(255,255,255,.3);
-    padding:10px 12px;
-    border-radius:24px;
-    font:700 .82rem 'DM Sans';
-    cursor:pointer;
-    backdrop-filter:blur(8px);
-    transition:all .15s;
-    text-decoration:none;
-    display:inline-flex;
-    align-items:center;
-    justify-content:center;
-    min-height:44px;
+  .shead h2{
+    font-size:clamp(1.9rem,7vw,2.7rem) !important;
+    line-height:1.15 !important;
+    text-align:center !important;
   }
-  .mob-nav-btn:active{background:rgba(255,255,255,.4);transform:scale(.96)}
-  .mob-nav-btn.wa-inquire{
-    flex:1.4;
-    background:#25d366 !important;
-    color:#063c19 !important;
-    border-color:#1ba850 !important;
-    font-weight:700;
-  }
-  /* Hide side arrows on mobile so they never obstruct the photo */
-  .lightbox-arrow{display:none !important}
-  .lightbox-close{
-    top:14px;
-    right:14px;
-    width:46px;
-    height:46px;
-    font-size:1.25rem;
+  .shead .section-sub{
+    font-size:.92rem !important;
+    margin:10px auto 0 !important;
+    max-width:440px !important;
+    text-align:center !important;
   }
 
-  /* Completely remove bottom action dock on phones */
-  .mobile-action-dock{display:none !important}
-
-  /* Single subtle floating WhatsApp icon */
-  .fwa{
-    width:52px;
-    height:52px;
-    font-size:1.45rem;
-    right:16px;
-    bottom:20px;
-    z-index:90;
-  }
-}
-
-@media(max-width:640px){
-  :root{--sceneH:0px}
-  main{padding-bottom:40px !important}
-  .stop{padding:6vh 5vw 3vh}
+  /* Hero Section */
   .hero{
-    padding-top:130px;
-    min-height:82vh;
-    align-items:center;
-    text-align:center;
-    position:relative;
+    padding-top:130px !important;
+    min-height:82vh !important;
+    align-items:center !important;
+    text-align:center !important;
+    position:relative !important;
   }
-  /* Perfectly Fitted & Centered Background Photo on Mobile */
   .hero::before{
-    position:absolute;
-    inset:40px 4vw 0;
-    width:auto;
-    height:80%;
-    right:4vw;
-    left:4vw;
-    top:40px;
-    border-radius:24px;
-    background-size:cover;
-    background-position:center center;
-    -webkit-mask-image:radial-gradient(ellipse at 50% 50%,#000 40%,transparent 78%);
-    mask-image:radial-gradient(ellipse at 50% 50%,#000 40%,transparent 78%);
-    opacity:.42;
-    animation:none;
-  }
-  .hero .hello{text-align:center;position:relative;z-index:2}
-  .hero h1{font-size:clamp(2.1rem,8.5vw,3.2rem);line-height:1.15;text-align:center;position:relative;z-index:2}
-  .hero-sub{font-size:.92rem;margin:14px 0 20px;text-align:center;position:relative;z-index:2}
-  .hero .cta{justify-content:center;width:100%;position:relative;z-index:2}
-  .hero .btn{flex:1;max-width:180px;text-align:center;padding:14px 16px}
-  .hero .drive{text-align:center;position:relative;z-index:2}
-
-  .final::before{
-    inset:0 !important;
+    position:absolute !important;
+    inset:40px 4vw 0 !important;
+    width:auto !important;
+    height:80% !important;
+    border-radius:24px !important;
     background-size:cover !important;
     background-position:center center !important;
-    opacity:.32 !important;
+    -webkit-mask-image:radial-gradient(ellipse at 50% 50%,#000 40%,transparent 78%) !important;
+    mask-image:radial-gradient(ellipse at 50% 50%,#000 40%,transparent 78%) !important;
+    opacity:.4 !important;
+    animation:none !important;
+  }
+  .hero .hello{
+    text-align:center !important;
+    position:relative !important;
+    z-index:2 !important;
+    font-size:.72rem !important;
+    letter-spacing:.25em !important;
+  }
+  .hero h1{
+    font-size:clamp(2.1rem,8vw,3.2rem) !important;
+    line-height:1.15 !important;
+    text-align:center !important;
+    position:relative !important;
+    z-index:2 !important;
+  }
+  .hero-sub{
+    font-size:.92rem !important;
+    margin:14px auto 22px !important;
+    text-align:center !important;
+    position:relative !important;
+    z-index:2 !important;
+    max-width:420px !important;
+  }
+  .hero .cta{
+    justify-content:center !important;
+    width:100% !important;
+    max-width:360px !important;
+    margin:0 auto !important;
+    position:relative !important;
+    z-index:2 !important;
+    gap:12px !important;
+  }
+  .hero .btn{
+    flex:1 !important;
+    text-align:center !important;
+    padding:14px 16px !important;
+    font-size:.9rem !important;
+  }
+  .hero .drive{
+    text-align:center !important;
+    position:relative !important;
+    z-index:2 !important;
+    margin-top:40px !important;
   }
 
-  /* Straight, Beautifully Aligned Atelier Section */
+  /* Atelier Section (.board) */
   .board{
     display:flex !important;
     flex-direction:column !important;
     gap:24px !important;
     align-items:center !important;
+    width:100% !important;
+    max-width:480px !important;
+    margin:0 auto !important;
   }
   .polas{
     position:static !important;
     height:auto !important;
     width:100% !important;
-    max-width:100% !important;
+    max-width:360px !important;
     display:flex !important;
     flex-direction:column !important;
     gap:20px !important;
     align-items:center !important;
+    margin:0 auto !important;
   }
   .pola{
     position:static !important;
     width:100% !important;
     max-width:340px !important;
     transform:none !important;
-    padding:12px 12px 22px !important;
+    padding:10px 10px 18px !important;
     border-radius:12px !important;
     box-shadow:0 8px 24px rgba(0,0,0,.15) !important;
     margin:0 auto !important;
+    box-sizing:border-box !important;
+    max-width:300px !important;
   }
   .pola img{
     width:100% !important;
-    height:220px !important;
+    height:185px !important;
     object-fit:cover !important;
     border-radius:8px !important;
-    display:block;
+    display:block !important;
   }
   .pola figcaption{
     position:static !important;
@@ -679,52 +634,395 @@ body.modal-open .mobile-action-dock{
     right:auto !important;
     bottom:auto !important;
   }
-  .pola:hover{transform:none !important}
   .note{
     transform:none !important;
     width:100% !important;
-    max-width:340px !important;
-    border-radius:12px !important;
+    max-width:360px !important;
+    border-radius:14px !important;
     margin:0 auto !important;
     padding:24px 20px !important;
     box-shadow:5px 5px 0 var(--dk) !important;
+    box-sizing:border-box !important;
+    text-align:center !important;
   }
-  .note h2{font-size:1.6rem;line-height:1.25}
+  .note h2{
+    font-size:1.6rem !important;
+    line-height:1.25 !important;
+  }
 
-  /* Straight, Aligned Craft Tags */
-  .tags{grid-template-columns:1fr 1fr;gap:12px 10px}
-  .tagw{transform:none !important;margin-top:0 !important}
+  /* Craft Tags Section (.services) */
+  .tags{
+    display:grid !important;
+    grid-template-columns:repeat(auto-fit,minmax(130px,1fr)) !important;
+    gap:12px 10px !important;
+    width:100% !important;
+    max-width:460px !important;
+    margin:0 auto !important;
+    padding-top:10px !important;
+  }
+  .tagw{
+    transform:none !important;
+    margin-top:0 !important;
+    filter:none !important;
+  }
   .tagw::before{display:none !important}
-  .tagw.on{transform:none !important}
   .tag{
     border-radius:12px !important;
     clip-path:none !important;
     min-height:auto !important;
-    padding:24px 14px 18px !important;
+    padding:20px 12px 16px !important;
     text-align:center !important;
+    width:100% !important;
+    box-sizing:border-box !important;
   }
   .tag::before{display:none !important}
-  .tag h3{font-size:1.5rem}
-  .tag p{font-size:.76rem;margin-bottom:8px}
+  .tag h3{font-size:1.45rem !important}
+  .tag p{font-size:.78rem !important;margin-bottom:8px !important}
 
-  .perks{grid-template-columns:1fr 1fr;gap:10px}
-  .perk{padding:16px 10px;text-align:center}
-  .perk b{font-size:1.85rem}
-  .perk h3{font-size:.95rem}
-
-  .formpass{display:flex;flex-direction:column;border-radius:12px;transform:none !important}
-  .formpass .pl{padding:16px 14px}
-  .formgrid input,.formgrid select{font-size:16px !important;min-height:46px;padding:10px 12px}
-  .formpass .ps{
-    padding:14px;
-    width:100%;
-    border-top:2px dashed #b99557;
-    border-left:none;
-    display:flex;
-    justify-content:center;
+  /* Sofa Gallery Section (.gallery-sec) */
+  .gallery-sec{padding-top:2vh !important}
+  .gallery-tabs{
+    display:flex !important;
+    gap:8px !important;
+    justify-content:flex-start !important;
+    overflow-x:auto !important;
+    -webkit-overflow-scrolling:touch !important;
+    scrollbar-width:none !important;
+    padding:4px 4px 14px !important;
+    margin:10px auto 22px !important;
+    width:100% !important;
+    max-width:480px !important;
+    box-sizing:border-box !important;
   }
-  .formpass .ps .bar{display:none}
-  .formpass .ps button{width:100%;padding:14px;min-height:48px}
+  .gallery-tabs::-webkit-scrollbar{display:none}
+  .g-tab{
+    flex-shrink:0 !important;
+    padding:8px 16px !important;
+    font-size:.74rem !important;
+    box-shadow:2px 2px 0 var(--dk) !important;
+  }
+  .gallery-grid{
+    display:grid !important;
+    grid-template-columns:1fr !important;
+    gap:24px !important;
+    width:100% !important;
+    max-width:420px !important;
+    margin:0 auto !important;
+  }
+  .g-card{
+    padding:10px 10px 14px !important;
+    border-radius:14px !important;
+    box-shadow:0 10px 24px rgba(0,0,0,.18) !important;
+    width:100% !important;
+    box-sizing:border-box !important;
+    margin:0 auto !important;
+  }
+  .g-img-wrap{
+    height:240px !important;
+    border-radius:10px !important;
+  }
+  .g-caption h3{
+    font-size:1.05rem !important;
+    margin:0 0 8px !important;
+  }
+  .g-card-actions{
+    display:flex !important;
+    gap:8px !important;
+    margin-top:6px !important;
+    width:100% !important;
+  }
+  .g-action-btn{
+    flex:1 !important;
+    text-align:center !important;
+    padding:9px 12px !important;
+    font-size:.76rem !important;
+    justify-content:center !important;
+  }
+
+  /* Why Sangeetha (.why) */
+  .perks{
+    display:grid !important;
+    grid-template-columns:repeat(auto-fit,minmax(130px,1fr)) !important;
+    gap:10px !important;
+    width:100% !important;
+    max-width:460px !important;
+    margin:0 auto !important;
+  }
+  .perk{
+    padding:18px 12px !important;
+    text-align:center !important;
+    width:100% !important;
+    box-sizing:border-box !important;
+    border-radius:14px !important;
+  }
+  .perk b{font-size:1.85rem !important}
+  .perk h3{font-size:.95rem !important}
+
+  /* FAQ Section (.faq) */
+  .qa{
+    display:flex !important;
+    flex-direction:column !important;
+    gap:12px !important;
+    width:100% !important;
+    max-width:480px !important;
+    margin:0 auto !important;
+  }
+  .qa details{
+    width:100% !important;
+    box-sizing:border-box !important;
+    border-radius:12px !important;
+    padding:14px 18px !important;
+  }
+
+  /* RESERVATION PASS FORM - PERFECTLY CENTERED, NEVER OVERFLOWS */
+  .reserve .formpass{
+    display:flex !important;
+    flex-direction:column !important;
+    width:100% !important;
+    max-width:min(460px, calc(100vw - 28px)) !important;
+    margin:0 auto !important;
+    background:var(--paper) !important;
+    border:2px solid var(--dk) !important;
+    border-radius:18px !important;
+    box-shadow:6px 6px 0 var(--dk) !important;
+    -webkit-mask:none !important;
+    mask:none !important;
+    overflow:hidden !important;
+    box-sizing:border-box !important;
+    transform:none !important;
+    filter:none !important;
+  }
+  .reserve .formpass .pl{
+    width:100% !important;
+    max-width:100% !important;
+    box-sizing:border-box !important;
+    padding:22px 18px 18px !important;
+    display:flex !important;
+    flex-direction:column !important;
+    gap:16px !important;
+  }
+  .reserve .formgrid{
+    display:flex !important;
+    flex-direction:column !important;
+    gap:16px !important;
+    width:100% !important;
+    box-sizing:border-box !important;
+  }
+  .reserve .formgrid small{
+    display:block !important;
+    text-align:center !important;
+    font:700 .65rem 'DM Sans',sans-serif !important;
+    letter-spacing:.24em !important;
+    color:#8b6a3c !important;
+    margin-bottom:2px !important;
+  }
+  .reserve .formgrid label{
+    display:flex !important;
+    flex-direction:column !important;
+    width:100% !important;
+    max-width:100% !important;
+    min-width:0 !important;
+    box-sizing:border-box !important;
+    font:700 .62rem 'DM Sans',sans-serif !important;
+    letter-spacing:.22em !important;
+    text-transform:uppercase !important;
+    color:#8b6a3c !important;
+    gap:6px !important;
+    overflow:hidden !important;
+  }
+  .reserve .formgrid input,
+  .reserve .formgrid select{
+    display:block !important;
+    width:100% !important;
+    max-width:100% !important;
+    min-width:0 !important;
+    box-sizing:border-box !important;
+    background:rgba(43,29,20,.04) !important;
+    border:none !important;
+    border-bottom:2px solid var(--dk) !important;
+    border-radius:6px 6px 0 0 !important;
+    padding:11px 12px !important;
+    font:500 16px 'DM Sans',sans-serif !important;
+    color:var(--dk) !important;
+    outline:none !important;
+  }
+  .reserve .formgrid input[type="date"]{
+    display:block !important;
+    width:100% !important;
+    max-width:100% !important;
+    min-width:0 !important;
+    box-sizing:border-box !important;
+  }
+  .reserve .formgrid select{
+    text-overflow:ellipsis !important;
+    overflow:hidden !important;
+    white-space:nowrap !important;
+  }
+  .reserve .formgrid input:focus,
+  .reserve .formgrid select:focus{
+    border-bottom-color:var(--terra) !important;
+    background:rgba(217,99,59,.08) !important;
+  }
+  .reserve .formpass .ps{
+    width:100% !important;
+    max-width:100% !important;
+    box-sizing:border-box !important;
+    padding:16px 18px 20px !important;
+    background:#f3e6c8 !important;
+    border-top:2px dashed #b99557 !important;
+    border-left:none !important;
+    display:flex !important;
+    flex-direction:column !important;
+    align-items:center !important;
+    gap:10px !important;
+  }
+  .reserve .formpass .ps small{
+    display:block !important;
+    font:700 .65rem 'DM Sans',sans-serif !important;
+    letter-spacing:.25em !important;
+    color:#8b6a3c !important;
+  }
+  .reserve .formpass .ps .bar{display:none !important}
+  .reserve .formpass .ps button{
+    width:100% !important;
+    max-width:100% !important;
+    box-sizing:border-box !important;
+    padding:14px 18px !important;
+    min-height:48px !important;
+    font-size:.95rem !important;
+    border-radius:12px !important;
+    cursor:pointer !important;
+  }
+
+  /* Final Section (.final) */
+  .final{
+    display:flex !important;
+    flex-direction:column !important;
+    align-items:center !important;
+    text-align:center !important;
+    width:100% !important;
+    max-width:460px !important;
+    margin:0 auto !important;
+    padding-bottom:24px !important;
+  }
+  .final::before{
+    inset:0 !important;
+    background-size:cover !important;
+    background-position:center center !important;
+    opacity:.28 !important;
+  }
+  .final .cta{
+    justify-content:center !important;
+    width:100% !important;
+    max-width:360px !important;
+    margin:0 auto !important;
+  }
+  .copy{margin-top:32px !important}
+
+  /* Mobile Kerala delivery lorry and road - fitted cleanly at bottom */
+  .scene{
+    display:block !important;
+    position:fixed !important;
+    left:0 !important;
+    right:0 !important;
+    bottom:0 !important;
+    height:36px !important;
+    z-index:30 !important;
+    pointer-events:none !important;
+  }
+  .layer{display:none !important}
+  .road{
+    height:24px !important;
+    bottom:0 !important;
+    pointer-events:none !important;
+  }
+  .lorry{
+    display:block !important;
+    left:4vw !important;
+    bottom:7px !important;
+    width:clamp(120px, 32vw, 150px) !important;
+    pointer-events:none !important;
+  }
+  .reserve{
+    position:relative !important;
+    z-index:35 !important;
+  }
+  .reserve .formpass{
+    position:relative !important;
+    z-index:35 !important;
+  }
+  .lorry .beam{
+    position:absolute !important;
+    left:93% !important;
+    top:60.5% !important;
+    transform-origin:0% 50% !important;
+    transform:translateY(-50%) rotate(3deg) !important;
+    width:clamp(90px, 26vw, 150px) !important;
+    height:clamp(32px, 10vw, 55px) !important;
+    background:radial-gradient(ellipse at 0% 50%, rgba(255,255,240,0.95) 0%, rgba(255,240,150,0.6) 12%, rgba(255,225,110,0.25) 35%, rgba(255,210,80,0.06) 55%, transparent 72%) !important;
+    clip-path:polygon(0% 48%, 100% 5%, 100% 95%, 0% 52%) !important;
+    -webkit-mask-image:linear-gradient(90deg, #000 0%, #000 30%, rgba(0,0,0,0.4) 55%, transparent 75%) !important;
+    mask-image:linear-gradient(90deg, #000 0%, #000 30%, rgba(0,0,0,0.4) 55%, transparent 75%) !important;
+    filter:blur(2px) !important;
+    pointer-events:none !important;
+    z-index:4 !important;
+  }
+
+  /* Floating WhatsApp Button on Mobile */
+  .fwa{
+    position:fixed !important;
+    right:14px !important;
+    bottom:42px !important;
+    width:48px !important;
+    height:48px !important;
+    font-size:1.35rem !important;
+    z-index:90 !important;
+  }
+
+  /* Mobile Photo Lightbox */
+  .lightbox-modal{padding:10px !important;align-items:center !important;justify-content:center !important}
+  .lightbox-content{max-width:96vw !important;max-height:86vh !important;align-items:center !important;text-align:center !important}
+  .lightbox-content img{
+    max-width:92vw !important;
+    max-height:56vh !important;
+    width:auto !important;
+    height:auto !important;
+    object-fit:contain !important;
+    border-radius:12px !important;
+    margin:0 auto !important;
+    display:block !important;
+    box-shadow:0 16px 40px rgba(0,0,0,.85) !important;
+  }
+  .lightbox-caption{font-size:1.05rem !important;line-height:1.35 !important;margin-top:10px !important;text-align:center !important}
+  .lightbox-mob-nav{
+    display:flex !important;
+    gap:8px !important;
+    margin-top:12px !important;
+    width:100% !important;
+    max-width:320px !important;
+    justify-content:center !important;
+  }
+  .mob-nav-btn{
+    flex:1 !important;
+    padding:10px 12px !important;
+    font:700 .82rem 'DM Sans' !important;
+    min-height:44px !important;
+  }
+  .mob-nav-btn.wa-inquire{
+    flex:1.4 !important;
+    background:#25d366 !important;
+    color:#063c19 !important;
+    border-color:#1ba850 !important;
+  }
+  .lightbox-arrow{display:none !important}
+  .lightbox-close{
+    top:12px !important;
+    right:12px !important;
+    width:44px !important;
+    height:44px !important;
+    font-size:1.2rem !important;
+  }
+  .mobile-action-dock{display:none !important}
 }
 
 
